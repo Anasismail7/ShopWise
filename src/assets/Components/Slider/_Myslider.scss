@@ -1,0 +1,167 @@
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  &:hover {
+    .prev-button,
+    .next-button {
+    opacity: 1;
+    }
+  }
+
+  .prev-button,
+  .next-button {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: none;
+    color: #000000;
+    font-size: 50px;
+    cursor: pointer;
+    padding: 5px 10px;  
+    transition: all 0.3s ease-in-out;
+  }
+
+  .prev-button {
+    left: 20px;
+  }
+
+  .next-button {
+    right: 20px;
+  }
+
+  .prev-button:hover,
+  .next-button:hover {
+    background-color: #ff324d;
+    color: white;
+  }
+}
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+
+.slide_content{
+  position: absolute;
+  top: 30%;
+  left: 10%;
+
+   p {
+    font-size: 22px;
+    font-weight: 500;
+    color: #201d21;
+    margin-bottom: 1rem;
+  }
+  
+   h2 {
+    font-size: 57px;
+    color: #201d21;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+}
+ img {
+  width: 100%;
+  height: 32rem;
+}
+
+}
+
+
+
+.slide-animate {
+  p {
+    animation: slideIn 0.5s ease-in;
+  }
+  h2 {
+
+    animation: slideIn 0.8s ease-in;
+  }
+  .btn {
+    animation: slideIn 0.7s ease;
+  }
+}
+
+
+@keyframes slideIn {
+from {
+  opacity: 0;
+  transform: translateX(-150px);
+}
+to {
+  opacity: 1;
+  transform: translateX(0);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 769px){
+  .slider-container {
+    height: auto;
+    margin-bottom: 20px;
+}
+.slide img {
+  width: 100%;
+  height: 366px;
+}
+}
+
+
+@media (max-width: 575px){
+  .slider-container {
+    height: auto;
+}
+.slide img {
+  width: auto;
+  height: 366px;
+}
+.slide .slide_content {
+  top: 27%;
+  left: 4%;
+}
+.slide .slide_content p {
+  font-size: 17px;
+}
+.slide .slide_content h2 {
+  font-size: 33px;
+}
+
+.slider-container .prev-button, .slider-container .next-button {
+  font-size: 35px;
+  padding: 3px 3px;
+}
+.slider-container .next-button {
+  right: 9px;
+}
+.slider-container .prev-button{
+  left: 9px;
+}
+}

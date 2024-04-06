@@ -1,0 +1,268 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 8rem;
+  padding-block: 0.5rem;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 555;
+  width: 100%;
+}
+
+.navbar-left img {
+  width: 180px;
+  height: auto;
+}
+
+.navbar-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+.nav_items ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.nav_items .nav_links{
+  text-decoration: none;
+  color: #202325;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0 10px 30px 0;
+  margin-right:1rem;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    color: #ff324d;
+  }
+}
+.nav_links.active{
+  color: #ff324d;
+}
+
+
+.arrowdown_nav {
+  position: absolute;
+  margin: 1px 2px;
+  font-size: 15px;
+  color: #9e9595;
+}
+
+
+
+
+.dropdown.home {
+  margin-top: 20px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 10px 60px 10px 10px;
+  border: 1px solid #d1d1d1;
+  list-style: none;
+  color: #202325;
+  font-weight: 400;
+
+}
+.dropdown.home li {
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+.dropdown.home li:hover {
+  color: #ff324d;
+}
+
+.navbar-right ul li:hover .dropdown.home {
+  display: block;
+}
+
+.drop-links{
+  color: #202325;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    color: #ff324d;
+  }
+}
+
+
+nav label,
+nav #inp {
+  display: none;
+}
+
+
+.nav_icons ul{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  list-style: none;
+  margin-right: 10px;
+  margin-top: 8px;
+
+  a{
+    font-size: 20px;
+    color: #3f4346;
+    padding: 32px 0px;
+  }
+}
+.nav_icons ul li {
+  margin-right: 0.5rem;
+}
+
+
+
+.cart_container {
+  position: relative;
+}
+
+.cart_icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  margin-left: 13px;
+}
+
+.cart_icon > svg {
+  vertical-align: middle;
+}
+
+.cart_icon > span {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  background-color: #ff324d;
+  color: white;
+  border-radius: 50%;
+  padding: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1;
+}
+
+
+.cart_dropdown {
+  position: absolute;
+  top: 50px;
+  right: -50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px 90px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.cart_dropdown button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.cart_dropdown button:hover {
+  color: #007bff;
+}
+
+
+
+// ---------- media query ----------//
+
+@media (max-width:1075px){
+  .navbar {
+    padding-inline: 4rem;
+}
+.nav_items .nav_links {
+  font-size: 14px;
+}
+}
+
+@media (max-width:1037px){
+  .header-nav {
+    padding-inline: 4rem;
+}
+}
+
+
+@media (max-width:991px) {
+  .navbar {
+    padding-inline: 3rem;
+}
+  .navbar-left {
+    width: 30%;
+  }
+  .navbar-left img{
+    width: 78%;
+  }
+  .nav_items ul {
+    position: absolute;
+    display: unset;
+    background: white;
+    top: 100%;
+    left: 15%;
+    width: 75%;
+    visibility: hidden;
+  }
+  nav #inp:checked ~ .nav_items ul{
+    visibility: visible;
+  }
+  .nav_items li{
+    margin-inline:10px;
+    margin-bottom: 20px;
+  }
+  .dropdown.home {
+    display: none;
+    position: unset;
+    padding: 10px 0;
+   border: none; 
+    box-shadow: none; 
+    list-style: none;
+}
+  
+.arrowdown_nav {
+  position: unset;
+  float: right;
+  font-size: 15px;
+  color: #9e9595;
+}
+  
+  nav label{
+  display: block;
+  order: 2;
+  font-size: 18px;
+  padding: 5px 8px;
+  border: 1px solid #9e9595;
+}
+}
+
+
+@media (max-width:767px) {
+  .navbar-left {
+    width: 30%;
+  }
+  .navbar-left img{
+    width: 100%;
+  }
+  .navbar {
+    padding-inline: 5rem;
+    padding-block: 1rem;
+}
+}
+@media (max-width:575px) {
+  .navbar-left {
+    width: 40%;
+}
+  .navbar {
+    padding-inline: 0.5rem;
+    padding-block: 1rem;
+}
+}

@@ -1,0 +1,99 @@
+.services_container {
+  width: 100%;
+  
+}
+
+.item {
+  position: relative;
+  flex: 1;
+  padding: 60px;
+  border: none;
+  text-align: center;
+  z-index: 0;
+
+
+
+  .icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+
+    img {
+      width: 50px;
+      height: auto;
+    }
+  }
+
+  .service_doc {
+    h4 {
+      margin-bottom: 10px;
+    }
+    p {
+      color: #666;
+    }
+  }
+}
+
+.item.refund::after{
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 105px;
+  top: 5rem;
+  left: 0;
+  background-color:#dddddd;
+  z-index: 2;
+}
+.item.refund::before{
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 105px;
+  top: 5rem;
+  right: 0;
+  background-color: #dddddd;
+  z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 991px) {
+  .services_container {
+    width: 100%;
+    padding: 5rem;
+    .row {
+      padding-inline: 0rem;
+      display: unset;
+  }
+
+  .item {
+    position: relative;
+    flex: 1;
+    padding: 11px;
+    border: none;
+    text-align: center;
+    z-index: 0;
+}
+}
+}
+
+
+
+
+
+
+
+
+
+

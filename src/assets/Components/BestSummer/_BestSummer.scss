@@ -1,0 +1,233 @@
+.bestSummerContainer {
+  height: 26rem;
+  display: flex;
+  background-color: #f4f9fc;
+  margin: 5rem 0;
+  position: relative;
+}
+
+.bestSummerContainer img {
+  height: auto;
+  margin-inline: 5.5rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.bestSummerContainer .details {
+  margin-left: 40.2rem;
+  margin-top: 7rem;
+}
+
+.bestSummerContainer .details span {
+  color: #ff324d;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+.bestSummerContainer .details h3 {
+  font-weight: 400;
+  font-size: 16px;
+  color: #292b2c;
+  margin-bottom: 0.6rem;
+}
+
+.bestSummerContainer .details h2 {
+  font-size: 30px;
+  color: #292b2c;
+  margin-bottom: 1rem;
+}
+
+.bestSummerContainer .details p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1037px) {
+  .bestSummerContainer {
+    height: 19rem;
+  }
+
+  .bestSummerContainer .details {
+    width: 104rem;
+    margin-left: 28rem;
+    margin-top: 3rem;
+}
+.bestSummerContainer img {
+  height: 23rem;
+  margin-inline: 3.5rem;
+  position: absolute;
+  bottom: 0;
+}
+
+}
+
+@media (max-width: 991px) {
+  .bestSummerContainer {
+    height: 19rem;
+  }
+
+  .bestSummerContainer .details {
+    width: 40rem;
+    margin-left: 28rem;
+    margin-top: 3rem;
+}
+.bestSummerContainer img {
+  height: 21rem;
+  margin-inline: 3.5rem;
+  position: absolute;
+  bottom: 0;
+}
+
+}
+
+@media (max-width: 767px) {
+  .bestSummerContainer {
+    height: 40rem;
+    display: block;
+    background-color: #f4f9fc;
+    margin: 1rem 0 2rem 0;
+    padding: 36px 0px 0 0;
+    position: relative;
+  }
+
+  .bestSummerContainer .details {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .bestSummerContainer .details .btn {
+    position: relative;
+    width: 130px;
+    height: 45px;
+    color: #e8e1e2;
+    border: 1px solid #ff324d;
+    background-color: transparent;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.6s ease-in-out;
+    overflow: hidden;
+  }
+
+  .bestSummerContainer .details h2 {
+    font-size: 21px;
+    color: #292b2c;
+    margin-bottom: 1rem;
+  }
+
+  .bestSummerContainer .details p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+  }
+  .img-container img {
+    top: 35%;
+    left: 2px;
+    width: 380px;
+    height: 26rem;
+    margin-left: 7rem;
+    position: unset;
+}
+}
+
+@media (max-width: 575px) {
+  .bestSummerContainer {
+    height: 40rem;
+    display: block;
+    background-color: #f4f9fc;
+    margin: 1rem 0 2rem 0;
+    padding: 36px 0px 0 0;
+    position: relative;
+  }
+
+  .bestSummerContainer .details {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .bestSummerContainer .details .btn {
+    position: relative;
+    width: 130px;
+    height: 45px;
+    color: #e8e1e2;
+    border: 1px solid #ff324d;
+    background-color: transparent;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.6s ease-in-out;
+    overflow: hidden;
+  }
+
+  .bestSummerContainer .details h2 {
+    font-size: 21px;
+    color: #292b2c;
+    margin-bottom: 1rem;
+  }
+
+  .bestSummerContainer .details p {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+  }
+  .img-container img {
+    top: 35%;
+    left: 2px;
+    width: 370px;
+    height: 26rem;
+    margin-left: 2rem;
+    position: unset;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

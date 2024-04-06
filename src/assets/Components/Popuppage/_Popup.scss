@@ -1,0 +1,150 @@
+.popup_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+
+}
+.popup_content {
+  position: relative;
+  background-color: #fff; 
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 50%; 
+  width: 100%;
+  text-align: center; 
+  margin: 5rem auto;
+}
+
+.popup_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.close_icon{
+  position: absolute;
+  top: 15px;
+  right: 0;
+  font-weight: 500;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.popup_doc {
+  width: 60%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup_doc {
+  h2, p, input, .btn {
+    margin-bottom: 1rem;
+  }
+  
+}
+.popup_doc p{
+  margin-left: 50px;
+  width: 80%;
+  text-align: center;
+}
+.pop_img{
+  width: 40%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  .pop_img img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+.email_input {
+  padding: 11px 87px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid #c2c1c1bd;
+}
+.email_input:focus {
+
+  border: 1px solid #4c8eb8;
+}
+
+.btn.pop{
+  position: relative;
+  height: 50px;
+  color: white;
+  border: 1px solid #333;  width: 100%;
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 1;
+  transition: 0.4s ease-in-out;
+  overflow: hidden;
+
+  ::before{
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 50px;
+    background-color: #333;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: 0.4s ease-in-out;  
+  }
+
+  ::after{
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  background-color: #333;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+
+  &:hover::before{
+    left: -200px;
+  }
+  &:hover::after{
+    right: -200px;
+  }
+  &:hover{
+    color: black;
+  }
+}
+.btn::before{
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  background-color: #333;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+.btn::after{
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  background-color: #333;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.4s ease-in-out;
+}
+
+label{
+  margin-left: 1rem;
+}
