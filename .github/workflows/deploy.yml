@@ -1,9 +1,9 @@
-name: Deploy
+name: ShopWise
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
