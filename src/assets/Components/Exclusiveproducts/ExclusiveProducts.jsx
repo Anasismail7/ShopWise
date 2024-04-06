@@ -6,7 +6,6 @@ import { IoShuffle } from "react-icons/io5";
 import { CiZoomIn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { CartContext } from "../../utils/CartContext";
-import axios from "axios";
 import AxiosConfig from "../../../Axios/AxiosConfig";
 
 const ExclusiveProducts = () => {
@@ -15,7 +14,7 @@ const ExclusiveProducts = () => {
 
   async function getAllProducts() {
     try {
-      const { data } = await AxiosConfig.get();
+      const { data } = await AxiosConfig.get("");
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
