@@ -14,7 +14,7 @@ const ExclusiveProducts = () => {
 
   async function getAllProducts() {
     try {
-      const { data } = await AxiosConfig.get("");
+      const { data } = await AxiosConfig("/products");
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -46,16 +46,26 @@ const ExclusiveProducts = () => {
       <div className="product-cards">
         {products?.map((product) => (
           <div key={product.id} className="product-card">
+            <div className="card-img">
             <img
               key={product.id}
               src={product.image}
               alt={`Product ${product.id} Image `}
             />
+            </div>
             <div className="product_info">
               <Link to={`/product/${product.id}`}>{product.title}</Link>
               <span className="price">${product.price}</span>
-              <span className="price">${product.rating.rate}</span>
-              <span className="price">${product.rating.count}</span>
+              <del className="rating">${product.old_price}</del>
+              <span className="discount">{product.discount}% Off</span>
+
+              <div className="rate-star">
+                <IoStar className="star"/>
+                <IoStar className="star"/>
+                <IoStar className="star"/>
+                <IoStar className="star"/>
+                <span className="rating">({product.rating.count})</span>
+              </div>
 
               <span className="product-icons">
                 <BsCart3

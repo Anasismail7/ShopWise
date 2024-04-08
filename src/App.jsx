@@ -7,7 +7,9 @@ import Login from "./assets/Pages/Login/Login";
 import Register from "./assets/Pages/Register/Register";
 import SingleProduct from "./assets/Pages/SingleProduct/SingleProduct";
 import { CartProvider } from "./assets/utils/CartContext";
-
+import store from "./assets/Store/Store";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
 function App() {
   const Routing = createBrowserRouter([
     {
@@ -23,11 +25,13 @@ function App() {
   ]);
 
   return (
-    <CartProvider>
-      {" "}
-      {/* Wrap your entire component tree with CartProvider */}
-      <RouterProvider router={Routing} />
-    </CartProvider>
+    <Provider store={store}>
+      <Toaster position="top-right" />
+      <CartProvider>
+        {" "}
+        <RouterProvider router={Routing} />
+      </CartProvider>
+    </Provider>
   );
 }
 

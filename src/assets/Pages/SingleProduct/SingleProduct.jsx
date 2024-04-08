@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs";
-import { Link } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
+import { FaRegHeart, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { TfiGoogle } from "react-icons/tfi";
 import { CiYoutube } from "react-icons/ci";
 import { TiSocialInstagram } from "react-icons/ti";
@@ -20,11 +18,13 @@ import AxiosConfig from "../../../Axios/AxiosConfig";
 
 const SingleProduct = () => {
   const [activeTab, setActiveTab] = useState("description");
-  const [products, setProducts] = useState({});
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
+
   const breadcrumbs = [
     { label: "Home", path: "/" },
     { label: "Pages", path: "/" },
@@ -50,37 +50,35 @@ const SingleProduct = () => {
 
   const { setCounter } = useContext(CartContext);
 
-  async function getAllProducts() {
-    const { data } = await AxiosConfig.get(`/${id}`);
-    setProducts(data);
-    console.log(setProducts);
-  }
-
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    async function getProduct() {
+      try {
+        const { data } = await AxiosConfig.get(`/products/${id}`);
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    }
+    getProduct();
+  }, [id]);
 
   return (
     <>
       <Breadcrumbs items={breadcrumbs} pageTitle="Product Detail" />
       <div className="single-product">
         <div className="product-wrapper">
-          <div class="img-wrapper">
-            <img src={products.image} alt="" class="cover-img" />
-            <div class="small-images">
-              <img src={products.image} alt="" class="small-img" />
-              <img src={products.image} alt="" class="small-img" />
-              <img src={products.image} alt="" class="small-img" />
-              <img src={products.image} alt="" class="small-img" />
-            </div>
+          <div className="img-wrapper">
+            <img src={product.image} alt="" className="cover-img" />
+            <div className="small-images">{/* Small images */}</div>
           </div>
 
           <div className="product-info">
-            <h1 className="product-title">{setProducts.title}</h1>
+            <h1 className="product-title">{product.title}</h1>
             <div className="price-info">
-              <div className="price-left">
-                <span className="price"> ${products.price}</span>
-              </div>
+            <span className="price">${product.price}</span>
+              <del className="rating">${product.old_price}</del>
+              <span className="discount">{product.discount}% Off</span>
+          
               <div className="rating">
                 <IoStar className="star" />
                 <IoStar className="star" />
@@ -88,36 +86,30 @@ const SingleProduct = () => {
                 <IoStar className="star" />
                 <IoStarHalf className="star" /> {""}
                 <span className="rating">
-                  Rating: {products.rating?.rate} ({products.rating?.count}{" "}
-                  reviews)
+                ({product.rating?.count})
                 </span>
               </div>
             </div>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              blandit massa enim. Nullam id varius nunc id varius nunc.
-            </p>
+            <p>{product.description}</p>
             <div className="product-benefits">
-              {/* Add benefits */}
+              {/* Benefits */}
               <ul>
                 <li>
-                  {" "}
                   <IoShieldCheckmarkOutline className="benefit-icon" /> 1 Year
                   AL Jazeera Brand Warranty
                 </li>
                 <li>
-                  {" "}
                   <IoSync className="benefit-icon" /> 30 Day Return Policy
                 </li>
                 <li>
-                  {" "}
                   <FaSackDollar className="benefit-icon" /> Cash on Delivery
                   available
                 </li>
               </ul>
             </div>
             <div className="product-sizes">
+              {/* Sizes */}
               <span>Size</span>
               <span
                 className={`size ${selectedSize === "XS" ? "selected" : ""}`}
@@ -150,8 +142,8 @@ const SingleProduct = () => {
                 XL
               </span>
             </div>
-            {/* Add quantity controls */}
             <div className="quantity-controls">
+              {/* Quantity controls */}
               <button className="btn-control" onClick={handleDecrement}>
                 -
               </button>
@@ -169,6 +161,7 @@ const SingleProduct = () => {
               <FaRegHeart className="icon" />
             </div>
             <div className="product-cat">
+              {/* Product category */}
               <ul>
                 <li>
                   <span>SKU</span>: <a href="#">BE45VGRT</a>
@@ -183,6 +176,7 @@ const SingleProduct = () => {
               </ul>
             </div>
             <div className="social-media">
+              {/* Social media share */}
               <ul>
                 <span>Share :</span>
                 <li>
@@ -206,6 +200,7 @@ const SingleProduct = () => {
         </div>
 
         <div className="product-description">
+          {/* Description, additional info, and reviews tabs */}
           <div className="product-row">
             <ul>
               <li className={activeTab === "description" ? "active" : ""}>

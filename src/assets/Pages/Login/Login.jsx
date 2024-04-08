@@ -1,9 +1,11 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { TfiGoogle } from "react-icons/tfi";
 import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs"; // Import Breadcrumbs component
+import { toast } from "react-hot-toast";
+import AxiosConfig from "../../../Axios/AxiosConfig";
 
 const Login = () => {
   const breadcrumbs = [
@@ -17,10 +19,25 @@ const Login = () => {
     rememberMe: false,
   };
 
-  const onSubmit = (values, actions) => {
-    // Handle form submission here
-    console.log(values);
-    actions.setSubmitting(false);
+  const navigate = useNavigate();
+
+  async function handleLoginForm(values) {
+    try {
+      const res = await AxiosConfig({
+        url: "/login",
+        method: "POST",
+        data: values,
+      });
+      toast.success("Success Login...");
+      navigate("/");
+    } catch (err) {
+      toast.error(err.response.data);
+      console.log(err);
+    }
+  }
+
+  const onSubmit = async (values, actions) => {
+    handleLoginForm(values);
   };
 
   return (
@@ -72,7 +89,7 @@ const Login = () => {
               </div>
               <div className="form-group create-acc ">
                 <span>Don't have an account?</span>{" "}
-                <Link to={"/signup"}>Sign up now</Link>
+                <Link to={"/register"}>Sign up now</Link>
               </div>
             </Form>
           )}
