@@ -10,6 +10,7 @@ import { CartProvider } from "./assets/utils/CartContext";
 import store from "./assets/Store/Store";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
+import Cart from "./assets/Pages/Cart/Cart";
 function App() {
   const Routing = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ function App() {
         { path: "", element: <Home /> },
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
+        { path: "/cart", element: <Cart /> },
         { path: "/product/:id", element: <SingleProduct /> },
       ],
     },

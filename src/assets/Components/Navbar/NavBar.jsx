@@ -1,30 +1,23 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import { TfiSearch } from "react-icons/tfi";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsCart3 } from "react-icons/bs";
+import { TfiSearch } from "react-icons/tfi";
 import { CartContext } from "../../utils/CartContext";
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
   const { counter } = useContext(CartContext);
 
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        {/* Image on the left side */}
         <img src="/src/assets/Images/logo_dark.png" alt="Logo" />
       </div>
       <div className="navbar-right">
-        <label for="inp">
-          <i class="fa-solid fa-bars"></i>
+        <label htmlFor="inp">
+          <i className="fa-solid fa-bars"></i>
         </label>
-        <input type="checkbox" id="inp"></input>
+        <input type="checkbox" id="inp" />
         <div className="nav_items">
           <ul>
             <li>
@@ -88,32 +81,18 @@ const Navbar = () => {
           <ul>
             <li>
               <div className="search-container">
-              <a href="#">
-                <TfiSearch className="search_icon" />
-              </a>
+                <a href="#">
+                  <TfiSearch className="search_icon" />
+                </a>
               </div>
             </li>{" "}
             <li>
               <div className="cart_container">
-                <div
-                  className="cart_icon"
-                  onMouseEnter={handleDropdownToggle}
-                  onMouseLeave={handleDropdownToggle}
-                >
-                  <a href="#">
+                <div className="cart_icon">
+                  <Link to={"/cart"}>
                     <BsCart3 />
-                  </a>
+                  </Link>
                   <span>{counter}</span>
-                  {isDropdownOpen && (
-                    <div className="cart_dropdown">
-                      <button onClick={() => console.log("View Cart")}>
-                        View Cart
-                      </button>
-                      <button onClick={() => console.log("Check Out")}>
-                        Check Out
-                      </button>
-                    </div>
-                  )}
                 </div>
               </div>
             </li>

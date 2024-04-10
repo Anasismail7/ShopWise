@@ -28,6 +28,26 @@ const FeaturedProducts = () => {
     getAllProducts();
   }, []);
 
+  async function handleCart(id) {
+    const { data } = await AxiosConfig({
+      url: `/products/${id}`,
+    });
+    addToCart(data);
+  }
+
+  async function addToCart(result) {
+    try {
+      const { data } = await AxiosConfig({
+        url: "/cart",
+        method: "POST",
+        data: result,
+      });
+      toast.success("Added to Cart");
+    } catch (error) {
+      toast.error("This item already added");
+    }
+  }
+
   const sliderSettings = {
     infinite: true,
     speed: 500,
@@ -94,7 +114,10 @@ const FeaturedProducts = () => {
             <span className="product-icons">
               {""}
               <BsCart3
-                onClick={() => setCounter(counter + 1)}
+                onClick={() => {
+                  setCounter(counter + 1);
+                  handleCart(product.id); // Call handleCart instead of addToCart directly
+                }}
                 className="icon"
               />
               <IoShuffle className="icon" />

@@ -15,8 +15,9 @@ import {
 import { FaSackDollar } from "react-icons/fa6";
 import { CartContext } from "../../utils/CartContext";
 import AxiosConfig from "../../../Axios/AxiosConfig";
+import toast from "react-hot-toast";
 
-const SingleProduct = () => {
+const SingleProduct = ({ data }) => {
   const [activeTab, setActiveTab] = useState("description");
   const [product, setProduct] = useState({});
   const { id } = useParams();
@@ -62,6 +63,25 @@ const SingleProduct = () => {
     getProduct();
   }, [id]);
 
+  async function handleCart(id) {
+    const { data } = await AxiosConfig({
+      url: `/products/${id}`,
+    });
+    addToCart(data);
+  }
+
+  async function addToCart(result) {
+    try {
+      const { data } = await AxiosConfig({
+        url: "/cart",
+        method: "POST",
+        data: result,
+      });
+      toast.success("Added to Cart");
+    } catch (error) {
+      toast.error("This item already added");
+    }
+  }
   return (
     <>
       <Breadcrumbs items={breadcrumbs} pageTitle="Product Detail" />
@@ -75,19 +95,17 @@ const SingleProduct = () => {
           <div className="product-info">
             <h1 className="product-title">{product.title}</h1>
             <div className="price-info">
-            <span className="price">${product.price}</span>
+              <span className="price">${product.price}</span>
               <del className="rating">${product.old_price}</del>
               <span className="discount">{product.discount}% Off</span>
-          
+
               <div className="rating">
                 <IoStar className="star" />
                 <IoStar className="star" />
                 <IoStar className="star" />
                 <IoStar className="star" />
                 <IoStarHalf className="star" /> {""}
-                <span className="rating">
-                ({product.rating?.count})
-                </span>
+                <span className="rating">({product.rating?.count})</span>
               </div>
             </div>
 
@@ -152,7 +170,10 @@ const SingleProduct = () => {
                 +
               </button>
               <button
-                onClick={() => setCounter(quantity)}
+                onClick={() => {
+                  setCounter(quantity);
+                  handleCart(product.id);
+                }}
                 className="btn single"
               >
                 Add to Cart

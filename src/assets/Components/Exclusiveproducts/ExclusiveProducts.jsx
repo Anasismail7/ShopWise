@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IoStar, IoStarHalf } from "react-icons/io5";
+import { IoStar } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { IoShuffle } from "react-icons/io5";
 import { CiZoomIn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { CartContext } from "../../utils/CartContext";
+import { toast } from "react-hot-toast";
 import AxiosConfig from "../../../Axios/AxiosConfig";
 
 const ExclusiveProducts = () => {
@@ -24,6 +25,27 @@ const ExclusiveProducts = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  async function handleCart(id) {
+      const { data } = await AxiosConfig({
+        url: `/products/${id}`,
+      });
+      addToCart(data);
+      
+  }
+
+  async function addToCart(result) {
+    try {
+      const { data } = await AxiosConfig({
+        url: "/cart",
+        method: "POST",
+        data: result,
+      });
+      toast.success("Added to Cart");
+    } catch (error) {
+      toast.error("This item already added");
+    }
+  }
 
   return (
     <div className="exclusive-products">
@@ -47,11 +69,11 @@ const ExclusiveProducts = () => {
         {products?.map((product) => (
           <div key={product.id} className="product-card">
             <div className="card-img">
-            <img
-              key={product.id}
-              src={product.image}
-              alt={`Product ${product.id} Image `}
-            />
+              <img
+                key={product.id}
+                src={product.image}
+                alt={`Product ${product.id} Image `}
+              />
             </div>
             <div className="product_info">
               <Link to={`/product/${product.id}`}>{product.title}</Link>
@@ -60,16 +82,19 @@ const ExclusiveProducts = () => {
               <span className="discount">{product.discount}% Off</span>
 
               <div className="rate-star">
-                <IoStar className="star"/>
-                <IoStar className="star"/>
-                <IoStar className="star"/>
-                <IoStar className="star"/>
+                <IoStar className="star" />
+                <IoStar className="star" />
+                <IoStar className="star" />
+                <IoStar className="star" />
                 <span className="rating">({product.rating.count})</span>
               </div>
 
               <span className="product-icons">
                 <BsCart3
-                  onClick={() => setCounter(counter + 1)}
+                  onClick={() => {
+                    setCounter(counter + 1);
+                    handleCart(product.id); // Call handleCart instead of addToCart directly
+                  }}
                   className="icon"
                 />
                 <IoShuffle className="icon" />
