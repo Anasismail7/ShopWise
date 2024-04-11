@@ -16,6 +16,8 @@ import { FaSackDollar } from "react-icons/fa6";
 import { CartContext } from "../../utils/CartContext";
 import AxiosConfig from "../../../Axios/AxiosConfig";
 import toast from "react-hot-toast";
+import Cards from "../../Components/cards/Cards";
+import { Formik, Form, Field } from "formik";
 
 const SingleProduct = ({ data }) => {
   const [activeTab, setActiveTab] = useState("description");
@@ -89,7 +91,12 @@ const SingleProduct = ({ data }) => {
         <div className="product-wrapper">
           <div className="img-wrapper">
             <img src={product.image} alt="" className="cover-img" />
-            <div className="small-images">{/* Small images */}</div>
+            <div className="small-images">
+              <img src={product.smallimg1} alt="" className="small-img" />
+              <img src={product.smallimg2} alt="" className="small-img" />
+              <img src={product.smallimg3} alt="" className="small-img" />
+              <img src={product.smallimg4} alt="" className="small-img" />
+            </div>
           </div>
 
           <div className="product-info">
@@ -283,12 +290,147 @@ const SingleProduct = ({ data }) => {
               )}
             </div>
             <div className="des-info">
-              {activeTab === "reviews" && <p>This is the reviews paragraph.</p>}
+              {activeTab === "reviews" && (
+                <div className="userReview">
+                  <h2>
+                    2 Review For <span>Blue Dress For Woman</span>
+                  </h2>
+
+                  <div className="eachReview">
+                    <div className="userImg">
+                      <img src="/src/assets/Images/user_img1.jpg" alt="" />
+                    </div>
+
+                    <div className="reviewData">
+                      <div className="eachUserReview">
+                        <h3>Alea Brooks</h3>
+                        <p>March 5 2018</p>
+                        <p>
+                          Lorem Ipsumin gravida nibh vel velit auctor aliquet.
+                          Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                          elit consequat ipsum, nec sagittis sem nibh id elit.
+                          Duis sed odio sit amet nibh vulputate.
+                        </p>
+                      </div>
+
+                      <div className="ratingStars">
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="eachReview">
+                    <div className="userImg">
+                    <img src="/src/assets/Images/user_img2.jpg" alt="" />
+                    </div>
+
+                    <div className="reviewData">
+                      <div className="eachUserReview">
+                        <h3>Jinwoo Wong</h3>
+                        <p>June 17 2018</p>
+                        <p>
+                          It is a long established fact that a reader will be
+                          distracted by the readable content of a page when
+                          looking at its layout. The point of using Lorem Ipsum
+                          is that it has a more-or-less normal distribution of
+                          letters.
+                        </p>
+                      </div>
+
+                      <div className="ratingStars">
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                        <span>
+                          <IoStar />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="reviewForm">
+                    <h2>Add a review</h2>
+
+                    <div className="starIcons">
+                      <span>
+                        <IoStar />
+                      </span>
+                      <span>
+                        <IoStar />
+                      </span>
+                      <span>
+                        <IoStar />
+                      </span>
+                      <span>
+                        <IoStar />
+                      </span>
+                      <span>
+                        <IoStar />
+                      </span>
+                    </div>
+
+                    <Formik>
+                      <Form className="formSection">
+                        <div className="reviewFormFields">
+                          <Field
+                            as="textarea"
+                            id="textarea"
+                            name="textarea"
+                            placeholder="Your review"
+                          />
+                          <Field
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter Your Name"
+                          />
+                          <Field
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter Your Email"
+                          />
+                        </div>
+
+                        <button type="submit" className="reviewFormBtn btn">
+                          Submit Review
+                        </button>
+                      </Form>
+                    </Formik>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        <div className="related-product"></div>
+        <div className="related-product">
+          <h2>Related Products</h2>
+          <Cards />
+        </div>
       </div>
     </>
   );

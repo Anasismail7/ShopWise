@@ -261,8 +261,163 @@
       }
     }
   }
-  
-  
+  .userReview{
+    h2{
+        font-size: 20px;
+        font-weight: 500;
+        color: #212529;
+        margin-bottom: 1.5rem;
+        
+        span{
+            font-weight: 600;
+        }
+    }
+
+    .eachReview:first-of-type{
+        margin-bottom: 1.5rem;
+    }
+
+    .eachReview{
+        display: flex;
+        gap: 1.3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #DDDDDD;
+
+        .userImg{
+            img{
+                border-radius: 50%;
+            }
+        }
+
+        .reviewData{
+            display: flex;
+
+            .ratingStars{
+                display: flex;
+                span{
+                    color: #F6BC3E;
+                    font-size: 14px;
+                }
+            }
+
+            .eachUserReview{
+                h3{
+                    font-size: 16px;
+                    font-weight: 500;
+                    margin-bottom: 0.3rem;
+                }
+                
+                p:first-of-type, p:last-of-type{
+          
+                    color: #687188;
+                }
+
+                p:first-of-type{
+                    font-style: italic;
+                    margin-bottom: 0.5rem;
+                }
+                
+                p:last-of-type{
+                    line-height: 1.7rem;
+                }
+            }
+        }
+    }
+
+    .reviewForm{
+        h2{
+            font-size: 20px;
+            font-weight: 500;
+            color: #212529;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .starIcons{
+            span:not(:first-of-type){
+                margin-left: 0.3rem;
+            }
+        }
+
+        .starIcons{
+            color: #F6BC3E;
+            font-size: 22px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .formSection{
+            .reviewFormFields{
+                textarea, input{
+            
+                    font-size: 16px;
+                    border: 1px solid #DDDDDD;
+                    border-radius: 0.5rem;
+                    outline: none;
+                    padding-inline: 1rem;
+                }
+
+                textarea{
+                    width: 100%;
+                    padding-block: 0.8rem;
+                    padding-bottom: 3.8rem;
+                    margin-bottom: 0.8rem;
+                }
+                
+                input{
+                    width: calc(50% - 1rem);
+                    height: 3.2rem;
+                    margin-bottom: 1rem;
+
+                    &:not(:last-of-type){
+                        margin-right: 2rem;
+                    }
+                }
+            }
+        }
+
+        .btn{
+            position: relative;
+            width: 12rem;
+            height: 50px;
+            color: white;
+            border: 1px solid #7a7373;  
+            border-radius: 0.4rem;
+            background-color: white;
+            font-size: 1rem;
+            text-transform: capitalize;
+            cursor: pointer;
+            z-index: 1;
+            transition: 0.4s ease-in-out;
+            overflow: hidden;
+        
+            &:hover::before{
+                left: -200px;
+            }
+        
+            &:hover::after{
+                right: -200px;
+            }
+        
+            &:hover{
+                color: #ff324d;
+            }
+        }
+        
+        .btn::before, .btn::after{
+            background-color: #ff324d;
+        }
+    }
+}
+.rate-star {
+  margin-top: 10px;
+  .star {
+    color: #f6bc3e;
+  }
+}
+
+  .related-product h2{
+    text-align: center;
+  }
 }
 
 

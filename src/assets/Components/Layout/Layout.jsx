@@ -4,6 +4,7 @@ import Navbar from "../Navbar/NavBar";
 import Subscribe from "../Subscribe/Subscribe";
 import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 
 const Layout = () => {
   return (
@@ -13,6 +14,7 @@ const Layout = () => {
       <Navbar />
       {/* {changes} */}
       <Outlet />
+      <ScrollToTopButton />
       <Subscribe />
       <Footer />
     </>

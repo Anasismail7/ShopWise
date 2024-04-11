@@ -3,7 +3,7 @@ import React from "react";
 const Subscribe = () => {
   return (
     <div className="email-input-container">
-      <div className="row subscription">
+      <div className="row-subscription">
         <div className="email_doc">
           <h2>Subscribe Our Newsletter</h2>
         </div>

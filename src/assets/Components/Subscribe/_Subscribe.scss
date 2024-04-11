@@ -9,12 +9,12 @@
     color: #fff;
     font-size: 1.2rem;
   }
-  .row.subscription{
-    padding-inline: 3.5em;
+  .row-subscription{
+    padding-inline: 6.5em;
+    padding-block: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem;
     gap: 5rem;
   }
 
@@ -68,7 +68,7 @@
     height: auto;
     padding: 0;
 }
-  .email-input-container .row.subscription {
+  .email-input-container .row-subscription {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +101,7 @@
 
 @media (max-width: 779px) {
 
-  .email-input-container .row.subscription {
+  .email-input-container .row-subscription {
     display: block;
     padding: 2rem 6rem;
 }
@@ -134,7 +134,7 @@
 
 @media (max-width: 575px) {
 
-.email-input-container .row.subscription {
+.email-input-container .row-subscription {
     /* padding-inline: 3.5em; */
     display: block;
     justify-content: space-between;

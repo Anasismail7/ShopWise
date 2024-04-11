@@ -10,7 +10,7 @@ header {
   align-items: center;
   padding-inline: 8rem;
   padding-block: 1rem;
-  padding-bottom: 1rem;
+  height: 4rem;
   border-bottom: 1px solid rgb(231, 231, 231);
 }
 
@@ -19,7 +19,6 @@ header {
   display: flex;
   list-style: none;
   margin: 0;
-  padding: 0;
 }
 
 .dropdown {
@@ -50,9 +49,9 @@ header {
   transition: all 0.3s ease-in-out;
   font-weight: 400;
   font-size: 15px;
+  padding-block: 10px;
 
   &:hover {
-    color: #FF324D;
 
     .dropdown {
       display: block;

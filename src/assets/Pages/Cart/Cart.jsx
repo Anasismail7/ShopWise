@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AxiosConfig from "../../../Axios/AxiosConfig";
 import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs";
+import { CartContext } from "../../utils/CartContext";
+import { FaTrashAlt } from "react-icons/fa";
 
 export const Cart = () => {
   const [pdCounters, setPdCounters] = useState({}); // Store quantity for each product
@@ -11,6 +13,8 @@ export const Cart = () => {
     { label: "Home", path: "/" },
     { label: "Pages", path: "/" },
   ];
+
+  const { setCounter } = useContext(CartContext);
 
   // Function to handle quantity change
   const handleQuantityChange = (productId, quantity) => {
@@ -26,10 +30,10 @@ export const Cart = () => {
         const { data } = await AxiosConfig({
           url: "/cart",
         });
-        // Initialize quantity counters for each product
+
         const counters = {};
         data.forEach((product) => {
-          counters[product.id] = 1; // Default quantity is 1
+          counters[product.id] = 1;
         });
         setPdCounters(counters);
         setCartItems(data);
@@ -53,17 +57,56 @@ export const Cart = () => {
     );
   };
 
+  async function handleCart(productId) {
+    const { data } = await AxiosConfig({
+      url: `/products/${productId}`,
+    });
+    // Add the quantity of the added item to the current counter value
+    setCounter((prevCounter) => prevCounter + pdCounters[productId]);
+    addToCart(data);
+  }
+
+async function removeFromCart(productId) {
+  try {
+    await AxiosConfig({
+      method: "DELETE",
+      url: `/cart/${productId}`,
+    });
+    // Remove the deleted product from cartItems state
+    setCartItems(cartItems.filter((item) => item.id !== productId));
+    // Update cart count in CartContext by subtracting the quantity of the deleted item
+    setCounter((prevCounter) => prevCounter - pdCounters[productId]);
+  } catch (error) {
+    console.error("Error removing product from cart:", error);
+  }
+}async function removeFromCart(productId) {
+  try {
+    await AxiosConfig({
+      method: "DELETE",
+      url: `/cart/${productId}`,
+    });
+    // Remove the deleted product from cartItems state
+    setCartItems(cartItems.filter((item) => item.id !== productId));
+    // Update cart count in CartContext by subtracting the quantity of the deleted item
+    setCounter((prevCounter) => prevCounter - pdCounters[productId]);
+  } catch (error) {
+    console.error("Error removing product from cart:", error);
+  }
+}
   return (
     <>
-      <Breadcrumbs items={breadcrumbs} pageTitle="Product Detail" />
+      <Breadcrumbs items={breadcrumbs} pageTitle="Cart Details" />
       <div className="cartContainer">
         {cartItems.length === 0 ? (
-          <p>No items in the cart</p>
+          <div className="empty-cart">
+            <h2>Your Cart is empty!</h2>
+            <img src= "/src/assets/Images/cart1.png" alt="empty-cart" />
+          </div>
         ) : (
           <>
             {cartItems.map((product) => (
               <div className="product-container" key={product.id}>
-                <div className="row">
+                <div className="row-cart">
                   <div className="Product-Img">
                     <img src={product.image} alt={product.title} />
                   </div>
@@ -71,13 +114,9 @@ export const Cart = () => {
                     <div className="Product-Details">
                       <h3>{product.title}</h3>
                       <p>{product.description}</p> {/* Fix typo here */}
-                      <span className="currentPrice">
-                        ${product.price}
-                      </span>
+                      <span className="currentPrice">${product.price}</span>
                       <span className="oldPrice">${product.old_price}</span>
-                      <span className="discount">
-                        {product.discount}% Off
-                      </span>
+                      <span className="discount">{product.discount}% Off</span>
                     </div>
                     <div className="Quantity-Price">
                       <div className="Product-Quantity">
@@ -102,6 +141,12 @@ export const Cart = () => {
                         >
                           +
                         </button>
+                        <button
+                          onClick={() => removeFromCart(product.id)}
+                          className="delete"
+                        >
+                          <FaTrashAlt />
+                        </button>
                       </div>
                       <div className="Product-Price">
                         <p>
@@ -115,6 +160,18 @@ export const Cart = () => {
               </div>
             ))}
             <div className="total">
+              {cartItems.map((product) => (
+                <button
+                  key={product.id}
+                  onClick={() => {
+                    setCounter(pdCounters[product.id]);
+                    handleCart(product.id);
+                  }}
+                  className="btn single"
+                >
+                  Add to Cart
+                </button>
+              ))}
               <h4>Total: ${calculateTotal()}</h4>
             </div>
           </>
