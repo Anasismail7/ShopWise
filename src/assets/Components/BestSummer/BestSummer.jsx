@@ -10,7 +10,7 @@ const BestSummer = () => {
         <button className="btn">Shop Now</button>
       </div>
       <div className="img-container">
-        <img src="/public/Images/tranding_img.png" alt="" />
+        <img src="/Images/tranding_img.png" alt="" />
       </div>
     </div>
   );
