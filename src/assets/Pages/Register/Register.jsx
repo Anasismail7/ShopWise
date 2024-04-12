@@ -41,12 +41,11 @@ const Register = () => {
   async function handleRegisterForm(values) {
     try {
       const res = await AxiosConfig({
-        url: "/register",
+        url: "/users",
         method: "POST",
         data: values,
       });
       toast.success("Success Register...");
-
       navigate("/login");
     } catch (err) {
       toast.error(err.response.data);

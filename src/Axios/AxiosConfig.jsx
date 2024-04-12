@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3500";
+const BASE_URL = "https://shopwise-seven.vercel.app/";
 const AxiosConfig = axios.create({
   baseURL: BASE_URL,
 });

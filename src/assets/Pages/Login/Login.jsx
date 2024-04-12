@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import { Formik, Form, Field } from "formik";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { TfiGoogle } from "react-icons/tfi";
 import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs"; // Import Breadcrumbs component
@@ -8,6 +8,25 @@ import { toast } from "react-hot-toast";
 import AxiosConfig from "../../../Axios/AxiosConfig";
 
 const Login = () => {
+  const [users, setUsers] = useState([]); // State to store user data
+  const navigate = useNavigate();
+
+  // Fetch user data when the component mounts
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await AxiosConfig({
+          url: "/users",
+          method: "GET",
+        });
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    fetchUsers();
+  }, []);
+
   const breadcrumbs = [
     { label: "Home", path: "/" },
     { label: "Pages", path: "/" },
@@ -19,20 +38,17 @@ const Login = () => {
     rememberMe: false,
   };
 
-  const navigate = useNavigate();
-
   async function handleLoginForm(values) {
-    try {
-      const res = await AxiosConfig({
-        url: "/login",
-        method: "POST",
-        data: values,
-      });
-      toast.success("Success Login...");
+    const { email, password } = values;
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      toast.success("Login successful!");
       navigate("/");
-    } catch (err) {
-      toast.error(err.response.data);
-      console.log(err);
+    } else {
+      toast.error("Invalid email or password");
     }
   }
 
