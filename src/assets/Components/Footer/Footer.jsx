@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="left_items">
         <div className="footer-column">
           <div className="footer-logo">
-            <img src="/src/assets/Images/logo_light.png" alt="Logo" />
+            <img src="/Images/logo_light.png" alt="Logo" />
           </div>
           <div className="footer-info">
             <p>
@@ -96,12 +96,12 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>© 2020 All Rights Reserved by Bestwebcreator</p>
         <div className="payment-methods">
-          <img src="/src/assets/Images/visa.png" alt="visa.png" />
-          <img src="/src/assets/Images/discover.png" alt="discover" />
-          <img src="/src/assets/Images/master_card.png" alt="master_card" />
-          <img src="/src/assets/Images/paypal.png" alt="paypal" />
+          <img src="/Images/visa.png" alt="visa.png" />
+          <img src="/Images/discover.png" alt="discover" />
+          <img src="/Images/master_card.png" alt="master_card" />
+          <img src="/Images/paypal.png" alt="paypal" />
           <img
-            src="/src/assets/Images/amarican_express.png"
+            src="/Images/amarican_express.png"
             alt="amarican_express"
           />
         </div>

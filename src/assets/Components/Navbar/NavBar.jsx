@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="/src/assets/Images/logo_dark.png" alt="Logo" />
+        <img src="/Images/logo_dark.png" alt="Logo" />
       </div>
       <div className="navbar-right">
         <label htmlFor="inp">

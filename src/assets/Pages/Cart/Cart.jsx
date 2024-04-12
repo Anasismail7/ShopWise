@@ -100,7 +100,7 @@ async function removeFromCart(productId) {
         {cartItems.length === 0 ? (
           <div className="empty-cart">
             <h2>Your Cart is empty!</h2>
-            <img src= "/src/assets/Images/cart1.png" alt="empty-cart" />
+            <img src= "/Images/cart1.png" alt="empty-cart" />
           </div>
         ) : (
           <>

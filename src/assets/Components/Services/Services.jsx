@@ -7,7 +7,7 @@ const Services = () => {
       <div className="row">
         <div className="item">
           <div className="icon">
-            <img src="/src/assets/Images/shipped.png" alt="" />
+            <img src="/Images/shipped.png" alt="" />
           </div>
           <div className="service_doc">
             <h4>Free Delivery</h4>
@@ -19,7 +19,7 @@ const Services = () => {
         </div>
         <div className="item refund">
           <div className="icon">
-            <img src="/src/assets/Images/cashback.png" alt="" />
+            <img src="/Images/cashback.png" alt="" />
           </div>
           <div className="service_doc">
             <h4>30 Day Return</h4>
@@ -31,7 +31,7 @@ const Services = () => {
         </div>
         <div className="item">
           <div className="icon">
-            <img src="/src/assets/Images/24-hours-service.png" alt="" />
+            <img src="/Images/24-hours-service.png" alt="" />
           </div>
           <div className="service_doc">
             <h4>27/4 Support</h4>

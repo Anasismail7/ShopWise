@@ -39,7 +39,7 @@ const Header = () => {
           >
             <img
               className="lg_img"
-              src="/src/assets/Images/eng.png"
+              src="/Images/eng.png"
               alt="English"
             />{" "}
             English
@@ -49,7 +49,7 @@ const Header = () => {
                 <li>
                   <img
                     className="lg_img"
-                    src="/src/assets/Images/eng.png"
+                    src="/Images/eng.png"
                     alt="English"
                   />{" "}
                   English
@@ -57,7 +57,7 @@ const Header = () => {
                 <li>
                   <img
                     className="lg_img"
-                    src="/src/assets/Images/fn.png"
+                    src="/Images/fn.png"
                     alt="France"
                   />{" "}
                   France
@@ -65,7 +65,7 @@ const Header = () => {
                 <li>
                   <img
                     className="lg_img"
-                    src="/src/assets/Images/us.png"
+                    src="/Images/us.png"
                     alt="US"
                   />{" "}
                   United States

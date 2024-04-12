@@ -48,7 +48,7 @@ const MySlider = () => {
         className={activeIndex === slideIndex ? "slide-animate" : ""}
       >
         <div className="slide">
-          <img src="/src/assets/Images/banner1.jpg" alt="" />
+          <img src="/Images/banner1.jpg" alt="" />
           <div className="slide_content">
             <p>50% off in all products</p>
             <h2>Woman Fashion</h2>
@@ -56,7 +56,7 @@ const MySlider = () => {
           </div>
         </div>
         <div className="slide">
-          <img src="/src/assets/Images/banner2.jpg" alt="" />
+          <img src="/Images/banner2.jpg" alt="" />
           <div className="slide_content">
             <p>50% off in all products</p>
             <h2>Man Fashion</h2>
@@ -64,7 +64,7 @@ const MySlider = () => {
           </div>
         </div>
         <div className="slide">
-          <img src="/src/assets/Images/banner3.jpg" alt="" />
+          <img src="/Images/banner3.jpg" alt="" />
           <div className="slide_content">
             <p>50% off in all products</p>
             <h2>Summer Sale</h2>

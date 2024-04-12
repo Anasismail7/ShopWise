@@ -20,7 +20,7 @@ const PopupPage = () => {
         <div className="popup_content">
           <div className="popup_row">
             <div className="pop_img">
-              <img src="/src/assets/Images/popup_img.jpg" alt="popup_img" />
+              <img src="/Images/popup_img.jpg" alt="popup_img" />
             </div>
             <div className="popup_doc">
               <h2>Subscribe And Get 25% Discount!</h2>

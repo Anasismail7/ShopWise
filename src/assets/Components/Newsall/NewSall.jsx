@@ -8,7 +8,7 @@ const NewSall = () => {
         <div className="my-div">
           <div className="sall_img">
             <img
-              src="/src/assets/Images/shop_banner_img1.jpg"
+              src="/Images/shop_banner_img1.jpg"
               alt="Image 1"
               className="sall_img"
             />
@@ -23,7 +23,7 @@ const NewSall = () => {
         <div className="my-div">
           <div className="sall_img">
             <img
-              src="/src/assets/Images/shop_banner_img2.jpg"
+              src="/Images/shop_banner_img2.jpg"
               alt="Image 1"
               className="sall_img"
             />

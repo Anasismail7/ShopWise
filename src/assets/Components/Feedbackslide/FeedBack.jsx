@@ -60,7 +60,7 @@ const FeedBack = () => {
                   perferendis possimus quasi sint sit tempora voluptatem.
                 </p>
                 <div className="client-info">
-                  <img src="/src/assets/Images/user_img1.jpg" alt="" />
+                  <img src="/Images/user_img1.jpg" alt="" />
                   <div className="client_doc">
                     <h6>Lissa Castro</h6>
                     <span>Designer</span>
@@ -79,7 +79,7 @@ const FeedBack = () => {
                   perferendis possimus quasi sint sit tempora voluptatem.
                 </p>
                 <div className="client-info">
-                  <img src="/src/assets/Images/user_img2.jpg" alt="" />
+                  <img src="/Images/user_img2.jpg" alt="" />
                   <div className="client_doc">
                     <h6>Lissa Castro</h6>
                     <span>Designer</span>
@@ -98,7 +98,7 @@ const FeedBack = () => {
                   perferendis possimus quasi sint sit tempora voluptatem.
                 </p>
                 <div className="client-info">
-                  <img src="/src/assets/Images/user_img3.jpg" alt="" />
+                  <img src="/Images/user_img3.jpg" alt="" />
                   <div className="client_doc">
                     <h6>Lissa Castro</h6>
                     <span>Designer</span>
@@ -117,7 +117,7 @@ const FeedBack = () => {
                   perferendis possimus quasi sint sit tempora voluptatem.
                 </p>
                 <div className="client-info">
-                  <img src="/src/assets/Images/user_img4.jpg" alt="" />
+                  <img src="/Images/user_img4.jpg" alt="" />
                   <div className="client_doc">
                     <h6>Lissa Castro</h6>
                     <span>Designer</span>
