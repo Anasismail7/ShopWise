@@ -8,7 +8,6 @@ import Register from "./assets/Pages/Register/Register";
 import SingleProduct from "./assets/Pages/SingleProduct/SingleProduct";
 import { CartProvider } from "./assets/utils/CartContext";
 import store from "./assets/Store/Store";
-import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import Cart from "./assets/Pages/Cart/Cart";
 function App() {
@@ -28,8 +27,8 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Toaster position="top-right" />
       <CartProvider>
+    
         {" "}
         <RouterProvider router={Routing} />
       </CartProvider>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://shopwise-seven.vercel.app/";
+const BASE_URL = "https://json-data-d14u.onrender.com";
 const AxiosConfig = axios.create({
   baseURL: BASE_URL,
 });
