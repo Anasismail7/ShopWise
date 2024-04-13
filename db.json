@@ -1,0 +1,134 @@
+{
+  "users": [
+    {
+      "email": "veresyxita@mailinator.com",
+      "password": "$2a$10$agJkU2vDlnLBj5qtRANO7Ows6dgEe/AZEEeFGDvoMTrizVOSK7qSe",
+      "name": "Dylan Torres",
+      "confirm_password": "123456789",
+      "id": 1
+    },
+    {
+      "email": "joe@gmail",
+      "password": "$2a$10$6JfZOo3OvQ4bpkDZQGFBPeIGnf9.VvKr.b1wdcknqGVXPP7IOZqjO",
+      "name": "Yousefsas",
+      "confirm_password": "123456789",
+      "id": 2
+    },
+    {
+      "email": "admin@admin.com",
+      "password": "$2a$10$gpoJ/UCV/4tB2gKFhicdeuavwfIwavnUXRelh71Z48AfJbA5d851q",
+      "name": "yousef mohamed",
+      "confirm_password": "123456789",
+      "id": 3
+    },
+    {
+      "email": "yousef@gmail.com",
+      "password": "$2a$10$RLFmlIte4e7We4STJvMO4eVJJQEz7ZWQqJ8Wju6JH8CDHa9ucwQK2",
+      "name": "yousef mohamed",
+      "confirm_password": "123456789",
+      "id": 4
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$W59HN9JLVv447O5IdNbeKOh/R0n6mAEPrw3Gc8jlFH5FsUg3oKwiK",
+      "name": "admin122",
+      "confirm_password": "123456789",
+      "id": 5,
+      "isAdmin": true
+    }
+  ],
+  "products": [
+    {
+      "id": 2,
+      "product_name": "product 2",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 2000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "id": 3,
+      "product_name": "product 3",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "id": 4,
+      "product_name": "product 3",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": 500,
+      "old_price": 3000,
+      "onSale": true,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "product_name": "test product",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826",
+      "id": 5
+    },
+    {
+      "product_name": "test product 1000",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826",
+      "id": 6
+    }
+  ],
+  "wishList": [
+    {
+      "id": 4,
+      "product_name": "product 3",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": 500,
+      "old_price": 3000,
+      "onSale": true,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "id": 2,
+      "product_name": "product 2",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 2000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "id": 3,
+      "product_name": "product 3",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826"
+    },
+    {
+      "product_name": "test product 1000",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826",
+      "id": 6
+    },
+    {
+      "product_name": "test product",
+      "discription": "Lorem ipsum dolor sit amet consectetur. Maecenas urna tortor egestas vitae ut id.",
+      "new_price": null,
+      "old_price": 1000,
+      "onSale": false,
+      "img": "https://img.freepik.com/free-psd/black-friday-super-sale-social-media-banner-template_106176-1471.jpg?t=st=1710100873~exp=1710104473~hmac=20ea6d96e40108e55a10615345549343f12af9211792608627da35ecd72e9359&w=826",
+      "id": 5
+    }
+  ]
+}
