@@ -1,4 +1,4 @@
-#React + Vite project 
+#ReactVite
 
 How to run the project after taking a clone from it 
 npm install 
