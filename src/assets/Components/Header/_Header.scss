@@ -50,8 +50,19 @@ header {
   font-weight: 400;
   font-size: 15px;
   padding-block: 10px;
+  a{
+    list-style: none;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      color: #FF5369;
+    }
+  }
 
   &:hover {
+
+    color: #FF5369;
 
     .dropdown {
       display: block;

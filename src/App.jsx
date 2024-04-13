@@ -6,11 +6,13 @@ import Home from "./assets/Pages/Home/Home";
 import Login from "./assets/Pages/Login/Login";
 import Register from "./assets/Pages/Register/Register";
 import SingleProduct from "./assets/Pages/SingleProduct/SingleProduct";
+import Cart from "./assets/Pages/Cart/Cart";
 import { CartProvider } from "./assets/utils/CartContext";
 import store from "./assets/Store/Store";
 import { Provider } from "react-redux";
-import Cart from "./assets/Pages/Cart/Cart";
+
 function App() {
+  // Create router configuration
   const Routing = createBrowserRouter([
     {
       path: "",
@@ -28,8 +30,6 @@ function App() {
   return (
     <Provider store={store}>
       <CartProvider>
-    
-        {" "}
         <RouterProvider router={Routing} />
       </CartProvider>
     </Provider>

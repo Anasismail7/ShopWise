@@ -10,10 +10,17 @@ import { CiZoomIn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { CartContext } from "../../utils/CartContext";
 import AxiosConfig from "../../../Axios/AxiosConfig";
+import { toast } from "react-toastify";
 
 const FeaturedProducts = () => {
   const sliderRef = useRef(null); // Reference for the Slider component
   const [products, setProducts] = useState([]);
+  const { counter, setCounter } = useContext(CartContext);
+  const [addedItems, setAddedItems] = useState([]);
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   async function getAllProducts() {
     try {
@@ -24,28 +31,25 @@ const FeaturedProducts = () => {
     }
   }
 
-  useEffect(() => {
-    getAllProducts();
-  }, []);
-
   async function handleCart(id) {
-    const { data } = await AxiosConfig({
-      url: `/products/${id}`,
-    });
-    addToCart(data);
+    try {
+      const { data } = await AxiosConfig({
+        url: `/products/${id}`,
+      });
+      addToCart(data);
+      toast.success("Added to Cart"); // Use toast.success for success message
+      setAddedItems([...addedItems, id]); // Add the item to the addedItems array
+    } catch (error) {
+      toast.error("This item already added"); // Use toast.error for error message
+    }
   }
 
   async function addToCart(result) {
-    try {
-      const { data } = await AxiosConfig({
-        url: "/cart",
-        method: "POST",
-        data: result,
-      });
-      toast.success("Added to Cart");
-    } catch (error) {
-      toast.error("This item already added");
-    }
+    const { data } = await AxiosConfig({
+      url: "/cart",
+      method: "POST",
+      data: result,
+    });
   }
 
   const sliderSettings = {
@@ -93,8 +97,6 @@ const FeaturedProducts = () => {
     }
   };
 
-  const { counter, setCounter } = useContext(CartContext);
-
   return (
     <div className="featured-products">
       <h2>Featured Products</h2>
@@ -119,8 +121,12 @@ const FeaturedProducts = () => {
                 {""}
                 <BsCart3
                   onClick={() => {
-                    setCounter(counter + 1);
-                    handleCart(product.id); // Call handleCart instead of addToCart directly
+                    if (!addedItems.includes(product.id)) {
+                      setCounter(counter + 1);
+                      handleCart(product.id);
+                    } else {
+                      toast.error("You Already Added Me");
+                    }
                   }}
                   className="icon"
                 />

@@ -6,8 +6,9 @@ import { IoShuffle } from "react-icons/io5";
 import { CiZoomIn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 import { CartContext } from "../../utils/CartContext";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify"; // Import toast from react-toastify
 import AxiosConfig from "../../../Axios/AxiosConfig";
+import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling
 
 const ExclusiveProducts = () => {
   const { counter, setCounter } = useContext(CartContext);
@@ -27,24 +28,32 @@ const ExclusiveProducts = () => {
   }, []);
 
   async function handleCart(id) {
+    try {
+      // Check if the product is already in the cart
+      const { data: cartItems } = await AxiosConfig("/cart");
+      const isProductInCart = cartItems.some(item => item.id === id);
+      if (isProductInCart) {
+        throw new Error("This item already added");
+      }
+
+      // If not in the cart, add it
       const { data } = await AxiosConfig({
         url: `/products/${id}`,
       });
       addToCart(data);
-      
+      setCounter(counter + 1);
+      toast.success("Added to Cart"); // Use toast.success for success message
+    } catch (error) {
+      toast.error(error.message); // Use toast.error for error message
+    }
   }
 
   async function addToCart(result) {
-    try {
-      const { data } = await AxiosConfig({
-        url: "/cart",
-        method: "POST",
-        data: result,
-      });
-      toast.success("Added to Cart");
-    } catch (error) {
-      toast.error("This item already added");
-    }
+    const { data } = await AxiosConfig({
+      url: "/cart",
+      method: "POST",
+      data: result,
+    });
   }
 
   return (
@@ -91,12 +100,10 @@ const ExclusiveProducts = () => {
 
               <span className="product-icons">
                 <BsCart3
-                  onClick={() => {
-                    setCounter(counter + 1);
-                    handleCart(product.id); // Call handleCart instead of addToCart directly
-                  }}
+                  onClick={() => handleCart(product.id)}
                   className="icon"
                 />
+
                 <IoShuffle className="icon" />
                 <CiZoomIn className="icon" />
                 <FaRegHeart className="icon" />

@@ -4,6 +4,7 @@ import { ImMobile } from "react-icons/im";
 import { TbArrowsShuffle } from "react-icons/tb";
 import { VscHeart } from "react-icons/vsc";
 import { SlUser } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   // State to manage the visibility of the dropdown menus
@@ -95,7 +96,9 @@ const Header = () => {
             <VscHeart /> Wishlist
           </li>
           <li>
+            <Link to={"/login"}>
             <SlUser /> Login
+            </Link>
           </li>
         </ul>
       </nav>

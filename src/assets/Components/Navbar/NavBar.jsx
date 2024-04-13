@@ -87,12 +87,12 @@ const Navbar = () => {
               </div>
             </li>{" "}
             <li>
-              <div className="cart_container">
+            <div className="cart_container">
                 <div className="cart_icon">
                   <Link to={"/cart"}>
                     <BsCart3 />
                   </Link>
-                  <span>{counter}</span>
+                  {counter > 0 && <span className="cart_counter">{counter}</span>}
                 </div>
               </div>
             </li>

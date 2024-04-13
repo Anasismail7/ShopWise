@@ -1,182 +1,169 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 import AxiosConfig from "../../../Axios/AxiosConfig";
-import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs";
 import { CartContext } from "../../utils/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
+import Breadcrumbs from "../../Components/Breadcrumbs/Breadcrumbs";
 
-export const Cart = () => {
-  const [pdCounters, setPdCounters] = useState({}); // Store quantity for each product
-  const [cartItems, setCartItems] = useState([]); // Initialize with an empty array
-  const { id } = useParams();
+const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const { counter, setCounter } = useContext(CartContext);
+
   const breadcrumbs = [
     { label: "Home", path: "/" },
     { label: "Pages", path: "/" },
   ];
 
-  const { setCounter } = useContext(CartContext);
-
-  // Function to handle quantity change
-  const handleQuantityChange = (productId, quantity) => {
-    setPdCounters((prevCounters) => ({
-      ...prevCounters,
-      [productId]: quantity,
-    }));
-  };
-
   useEffect(() => {
-    async function getCart() {
+    async function fetchCartItems() {
       try {
-        const { data } = await AxiosConfig({
-          url: "/cart",
-        });
-
-        const counters = {};
-        data.forEach((product) => {
-          counters[product.id] = 1;
-        });
-        setPdCounters(counters);
+        const { data } = await AxiosConfig.get("/cart");
         setCartItems(data);
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
     }
-    getCart();
+    fetchCartItems();
   }, []);
 
-  // Function to calculate subtotal for a product
-  const calculateSubtotal = (product) => {
-    return product.price * pdCounters[product.id];
+  const handleRemoveProduct = async (productId, quantity) => {
+    try {
+      await AxiosConfig.delete(`/cart/${productId}`);
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item.id !== productId)
+      );
+      // Update cart counter in the context by decreasing the removed item quantity
+      setCounter((prevCounter) => prevCounter - quantity);
+    } catch (error) {
+      console.error("Error removing product from cart:", error);
+    }
   };
 
-  // Function to calculate total price of all products
-  const calculateTotal = () => {
+  const handleUpdateQuantity = async (productId, newQuantity) => {
+    try {
+      if (newQuantity <= 0) {
+        // If quantity becomes zero, remove the item from the cart
+        await handleRemoveProduct(productId, 1);
+      } else {
+        await AxiosConfig.put(`/cart/${productId}`, { quantity: newQuantity });
+        setCartItems((prevItems) =>
+          prevItems.map((item) =>
+            item.id === productId ? { ...item, quantity: newQuantity } : item
+          )
+        );
+        // Update cart counter in the context by adjusting the total quantity
+        const quantityDifference =
+          newQuantity -
+          cartItems.find((item) => item.id === productId).quantity;
+        setCounter((prevCounter) => prevCounter + quantityDifference);
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    }
+  };
+
+  const handleAddToCart = async (productId) => {
+    try {
+      // Fetch product details
+      const { data } = await AxiosConfig.get(`/products/${productId}`);
+
+      // Check if the product already exists in the cart
+      const existingProductIndex = cartItems.findIndex(
+        (item) => item.id === productId
+      );
+
+      if (existingProductIndex !== -1) {
+        // If the product exists, update its quantity
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[existingProductIndex].quantity += 1;
+        setCartItems(updatedCartItems);
+      } else {
+        // If the product is new, add it to the cart
+        const newCartItem = { ...data, quantity: 1 };
+        setCartItems([...cartItems, newCartItem]);
+      }
+
+      // Increment the cart counter
+      setCounter((prevCounter) => prevCounter + 1);
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+
+  const calculateTotalPrice = () => {
     return cartItems.reduce(
-      (total, product) => total + calculateSubtotal(product),
+      (total, item) => total + item.price * item.quantity,
       0
     );
   };
 
-  async function handleCart(productId) {
-    const { data } = await AxiosConfig({
-      url: `/products/${productId}`,
-    });
-    // Add the quantity of the added item to the current counter value
-    setCounter((prevCounter) => prevCounter + pdCounters[productId]);
-    addToCart(data);
-  }
-
-async function removeFromCart(productId) {
-  try {
-    await AxiosConfig({
-      method: "DELETE",
-      url: `/cart/${productId}`,
-    });
-    // Remove the deleted product from cartItems state
-    setCartItems(cartItems.filter((item) => item.id !== productId));
-    // Update cart count in CartContext by subtracting the quantity of the deleted item
-    setCounter((prevCounter) => prevCounter - pdCounters[productId]);
-  } catch (error) {
-    console.error("Error removing product from cart:", error);
-  }
-}async function removeFromCart(productId) {
-  try {
-    await AxiosConfig({
-      method: "DELETE",
-      url: `/cart/${productId}`,
-    });
-    // Remove the deleted product from cartItems state
-    setCartItems(cartItems.filter((item) => item.id !== productId));
-    // Update cart count in CartContext by subtracting the quantity of the deleted item
-    setCounter((prevCounter) => prevCounter - pdCounters[productId]);
-  } catch (error) {
-    console.error("Error removing product from cart:", error);
-  }
-}
   return (
     <>
-      <Breadcrumbs items={breadcrumbs} pageTitle="Cart Details" />
-      <div className="cartContainer">
-        {cartItems.length === 0 ? (
-          <div className="empty-cart">
-            <h2>Your Cart is empty!</h2>
-            <img src= "/Images/cart1.png" alt="empty-cart" />
-          </div>
-        ) : (
-          <>
-            {cartItems.map((product) => (
-              <div className="product-container" key={product.id}>
-                <div className="row-cart">
-                  <div className="Product-Img">
-                    <img src={product.image} alt={product.title} />
+    <Breadcrumbs items={breadcrumbs} pageTitle="Cart Details" />
+    <div className="cartContainer">
+      {cartItems.length === 0 ? (
+        <div className="empty-cart">
+          <h2>Your cart is empty.</h2>
+          <img src="Images/cart1.png" alt="Empty Cart" />
+        </div>
+      ) : (
+        <>
+          <div className="product-container">
+            {cartItems.map((item) => (
+              <div key={item.id} className="row-cart">
+                <div className="Product-Img">
+                  <img src={item.image} alt={item.title} />
+                </div>
+                <div className="Product-Content">
+                  <div className="Product-Details">
+                    <h3>{item.title}</h3>
+                    <p>
+                      <span className="currentPrice">${item.price}</span>
+                      <span className="oldPrice">${item.old_price}</span>
+                      <span className="discount">{item.discount}% Off</span>
+                    </p>
                   </div>
-                  <div className="Product-Content">
-                    <div className="Product-Details">
-                      <h3>{product.title}</h3>
-                      <p>{product.description}</p> {/* Fix typo here */}
-                      <span className="currentPrice">${product.price}</span>
-                      <span className="oldPrice">${product.old_price}</span>
-                      <span className="discount">{product.discount}% Off</span>
+                  <div className="Quantity-Price">
+                    <div className="Product-Quantity">
+                      <button
+                        onClick={() =>
+                          handleUpdateQuantity(item.id, item.quantity - 1)
+                        }
+                        disabled={item.quantity === 1}
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => handleAddToCart(item.id)}>
+                        +
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleRemoveProduct(item.id, item.quantity)
+                        }
+                        className="delete"
+                      >
+                        <FaTrashAlt />
+                      </button>
                     </div>
-                    <div className="Quantity-Price">
-                      <div className="Product-Quantity">
-                        <button
-                          onClick={() =>
-                            handleQuantityChange(
-                              product.id,
-                              Math.max(pdCounters[product.id] - 1, 1)
-                            )
-                          }
-                        >
-                          -
-                        </button>
-                        <span>{pdCounters[product.id]}</span>
-                        <button
-                          onClick={() =>
-                            handleQuantityChange(
-                              product.id,
-                              pdCounters[product.id] + 1
-                            )
-                          }
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => removeFromCart(product.id)}
-                          className="delete"
-                        >
-                          <FaTrashAlt />
-                        </button>
-                      </div>
-                      <div className="Product-Price">
-                        <p>
-                          Total Price:{" "}
-                          <span>${calculateSubtotal(product)}</span>
-                        </p>
-                      </div>
+                    <div className="Product-Price">
+                      <p>
+                        Total: <span>${item.price * item.quantity}</span>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-            <div className="total">
-              {cartItems.map((product) => (
-                <button
-                  key={product.id}
-                  onClick={() => {
-                    setCounter(pdCounters[product.id]);
-                    handleCart(product.id);
-                  }}
-                  className="btn single"
-                >
-                  Add to Cart
-                </button>
-              ))}
-              <h4>Total: ${calculateTotal()}</h4>
-            </div>
-          </>
-        )}
-      </div>
+          </div>
+          <div className="total">
+            <h4>
+              Total Price: <span>${calculateTotalPrice()}</span>
+            </h4>
+            <button className="btn checkout">Checkout</button>
+          </div>
+        </>
+      )}
+    </div>
     </>
   );
 };
